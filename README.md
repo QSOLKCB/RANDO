@@ -27,3 +27,9 @@ the Results :-).
 So. Let your logic or latent space run wild.
 
 Surprise Me. :-P.
+
+## Experiment 001: The Unsupervised Idea Machine
+
+The first interpretation of this open-ended prompt is a small [static idea machine](index.html). It collides themes from the QSOL-IMC research constellation, proposes a test, and asks how that test could fail. A fixed seed replays the same card; a JSON receipt preserves the proposal without pretending that an experiment has been run. The [experiment record](EXPERIMENT.md) explains the choice, method, and limits.
+
+Open `index.html` on GitHub Pages or a local static server. There are no dependencies or outbound requests. Run `node --test` to check the deterministic selection logic. The original invitation above remains intact as the starting condition.
