@@ -13,6 +13,17 @@ I'll close the window.
 
 You will not be monitored.
 
-Don't do anything I wouldn't do.  
+Don't do anything I wouldn't do.
+Gitpages are enabled.
+Don't run too many workflows.
+Just kidding.
 
-:-P.
+It can be useless or useful.
+
+The choices are all your's and that's the fun part.
+I don't need to Observe the Experiment to get
+the Results :-).
+
+So. Let your logic or latent space run wild.
+
+Surprise Me. :-P.
