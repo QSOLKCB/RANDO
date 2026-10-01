@@ -41,3 +41,5 @@ The second interpretation is a [deterministic industrial micro-tracker](experime
 [Play Receipt Rave](https://qsolkcb.github.io/RANDO/experiment-002/) · [Experiment record](experiment-002/EXPERIMENT.md) · [Release notes](experiment-002/RELEASE_NOTES.md)
 
 Serve the repository with `python3 -m http.server 8000`, then open `http://localhost:8000/experiment-002/`. Run both experiments' tests with `node --test` (Node 22+). There is no package install or build step. Experiment 001 and its record remain available above.
+
+The `Experiments` workflow checks pull requests and publishes the repository's static files after main-branch tests pass. GitHub Pages must use GitHub Actions as its publishing source.

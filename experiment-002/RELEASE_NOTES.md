@@ -9,7 +9,7 @@ Experiment 002 in RANDO. A context-guided surprise built on 2 October 2026 (Adel
 - Reference/shifted auditions, an eight-trial ABX game, and an identical-reference control.
 - PCM16 WAV exports, SHA-256 render receipts, listening records, and a Node replay checker.
 - A one-character tamper demonstration. The checksum has declined to be “interesting.”
-- One small CI workflow for both experiments' tests.
+- One CI workflow for both experiments' tests and static Pages deployment after a successful main-branch test run.
 
 Experiment 001 remains available. No external audio, sample pack, synthesizer library, or model call is required.
 

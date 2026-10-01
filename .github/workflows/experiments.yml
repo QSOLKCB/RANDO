@@ -1,9 +1,10 @@
 name: Experiments
 on:
   push:
-    paths: ['*.mjs', 'experiment-002/**', 'test/**', '.github/workflows/experiments.yml']
+    branches: [main]
+    paths: ['*.mjs', '*.html', '*.css', '*.md', 'experiment-002/**', 'test/**', '.github/workflows/experiments.yml']
   pull_request:
-    paths: ['*.mjs', 'experiment-002/**', 'test/**', '.github/workflows/experiments.yml']
+    paths: ['*.mjs', '*.html', '*.css', '*.md', 'experiment-002/**', 'test/**', '.github/workflows/experiments.yml']
 permissions:
   contents: read
 jobs:
@@ -16,3 +17,26 @@ jobs:
         with:
           node-version: '22'
       - run: node --test
+  pages:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: replay
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    concurrency:
+      group: github-pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: '.'
+      - uses: actions/deploy-pages@v4
+        id: deployment
