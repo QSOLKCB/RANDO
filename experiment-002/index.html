@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#111111">
+  <meta name="description" content="A deterministic industrial micro-tracker, a blind timing challenge, and a receipt for the noise.">
+  <title>RANDO 002 / Receipt Rave</title>
+  <link rel="stylesheet" href="style.css"><script type="module" src="app.mjs"></script>
+</head>
+<body>
+<div class="shell">
+  <header><a class="brand" href="../">R∅NDO</a><span>EXPERIMENT 002 / 02 OCT 2026</span><a href="EXPERIMENT.md">FIELD NOTES ↗</a></header>
+  <main>
+    <section class="intro">
+      <p class="eyebrow">THE WINDOW CLOSED. THE MACHINES GOT LOUD.</p>
+      <h1>Receipt<br><em>Rave.</em></h1>
+      <div class="intro-side"><p>A tiny industrial tracker that can show its working.</p><p>Forge a loop. Move its lead by a few samples. Test your ears. Keep the evidence.</p><span class="stamp">432 Hz / A MINOR / CPU SYNTHESIS</span></div>
+    </section>
+    <section class="console" aria-labelledby="forge-title">
+      <div class="section-head"><h2 id="forge-title">01 / THE FOUNDRY</h2><span>64 STEPS · 5 LANES · ZERO DEPENDENCIES</span></div>
+      <form id="forge-form" class="controls">
+        <label class="seed-label">REPLAY SEED<input id="seed" maxlength="128" value="the-window-is-closed" autocomplete="off" spellcheck="false" aria-describedby="seed-note"></label>
+        <label>TEMPO<select id="bpm"><option>120</option><option>128</option><option>135</option><option selected>147</option></select></label>
+        <label>LEAD DELAY<select id="delay"><option value="0">0 / control</option><option value="1">1 sample</option><option value="16">16 samples</option><option value="64" selected>64 samples</option><option value="256">256 samples</option><option value="1024">1024 samples</option></select></label>
+        <button id="forge" class="primary" type="submit">FORGE LOOP ↗</button>
+      </form>
+      <p id="seed-note" class="micro">Same seed + settings + engine → same PCM bytes. 1–64 Unicode characters. No model or server generates this audio.</p>
+      <div class="scope"><canvas id="scope" width="1000" height="110" role="img" aria-label="Waveform of the reference loop"></canvas><span id="readout">FORGING…</span></div>
+      <div id="tracker" class="tracker" role="img" aria-label="Generated 64-step score"></div>
+      <div class="transport"><button id="play-a" disabled>▶ REFERENCE A</button><button id="play-b" disabled>▶ SHIFTED B</button><button id="stop" disabled>■ STOP</button><label class="volume">OUTPUT <input id="volume" type="range" min="0" max="100" value="25" aria-label="Playback volume"><output id="volume-value">25%</output></label></div>
+      <p class="micro" id="difference">A is the original. B shifts only the lead lane and its echoes. Same duration, same mix settings.</p>
+      <p class="status" id="status" role="status" aria-live="polite">Preparing the first loop.</p>
+      <noscript>This experiment needs JavaScript for synthesis and playback. The field notes remain readable.</noscript>
+    </section>
+    <div class="lower">
+      <section class="console" aria-labelledby="abx-title">
+        <div class="section-head"><h2 id="abx-title">02 / CAN YOU HEAR IT?</h2><span>ABX / 8 TRIALS</span></div>
+        <p>Hear A, hear B, then hear X. Is X a copy of A or B? Lock each answer before the next trial. Results stay hidden until the end.</p>
+        <p class="micro">Use the same output and volume. This is an informal listening game; the 0-sample control has identical references.</p>
+        <button id="begin" class="primary" disabled>START BLIND SESSION</button>
+        <div id="session" hidden>
+          <p id="trial-label" class="eyebrow">TRIAL 1 / 8</p>
+          <div class="button-row"><button id="hear-a">▶ A</button><button id="hear-b">▶ B</button><button id="hear-x">▶ X</button></div>
+          <div class="button-row"><button id="guess-a" disabled>X IS A</button><button id="guess-b" disabled>X IS B</button></div>
+          <p class="micro">Listen to A, B, and X at least once before answering.</p>
+          <button id="abort">END SESSION EARLY</button>
+        </div>
+        <div id="result" role="status" aria-live="polite"></div>
+        <button id="session-export" disabled>EXPORT LISTENING RECORD .JSON</button>
+      </section>
+      <section class="console" aria-labelledby="receipt-title">
+        <div class="section-head"><h2 id="receipt-title">03 / SHOW THE RECEIPT</h2><span>SHA-256</span></div>
+        <p>The score, raw PCM, and WAV files each get a hash. Export a receipt and regenerate it here—or in Node—to check the bytes.</p>
+        <div class="hash"><span>REFERENCE PCM</span><code id="hash-a">…</code><span>SHIFTED PCM</span><code id="hash-b">…</code></div>
+        <div class="button-row"><button id="wav-a" disabled>↓ A .WAV</button><button id="wav-b" disabled>↓ B .WAV</button><button id="receipt" disabled>↓ RECEIPT .JSON</button></div>
+        <div class="verify"><label for="verify-file">CHECK AN EXPORTED RECEIPT</label><input id="verify-file" type="file" accept=".json,application/json"><button id="tamper" disabled>TRY A ONE-CHARACTER TAMPER</button><p id="verify-result" role="status" aria-live="polite">A matching hash establishes byte agreement. It does not certify authorship, scientific validity, or good taste.</p></div>
+      </section>
+    </div>
+    <section class="notes"><h2>The joke has<br>a checksum.</h2><div><p>Experiment 001 made questions. This run inferred an instrument from recurring themes: industrial music, tracker timing, deterministic execution, and inspectable evidence.</p><p>The experiment is what the model chose to build when given room. Your listening results are a separate observation. Neither proves general AI autonomy or human hearing limits.</p><a href="EXPERIMENT.md">READ THE CHOICE, METHOD & LIMITS ↗</a></div></section>
+  </main>
+  <footer><span>RANDO / QSOL-IMC</span><span>NO RGB WAS HARMED. NONE WAS INVITED.</span><a href="../">EXPERIMENT 001 ↗</a><a href="https://github.com/QSOLKCB/RANDO">SOURCE ↗</a></footer>
+</div>
+</body>
+</html>
