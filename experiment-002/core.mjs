@@ -7,7 +7,6 @@ export const DELAYS = Object.freeze([0, 1, 16, 64, 256, 1024]);
 export const LANES = Object.freeze(['PISTON', 'SNARE', 'SHRAPNEL', 'SUB', 'CARRIER']);
 // Frozen millihertz: 12-tone equal temperament, A4 = 432 Hz.
 const NOTES = Object.freeze([108000, 121227, 128435, 144163, 161817, 171438, 192436]);
-const NAMES = Object.freeze(['A', 'B', 'C', 'D', 'E', 'F', 'G']);
 const SCALE = Object.freeze([0, 2, 3, 4, 6, 4, 2, 0]);
 const trunc = Math.trunc;
 
@@ -59,7 +58,11 @@ export function makeScore(input) {
   return { engine: ENGINE, seed: c.seed, bpm: c.bpm, steps: 64, events };
 }
 
-const phaseIncrement = mhz => trunc(mhz * 4294967296 / (SAMPLE_RATE * 1000));
+const phaseIncrement = mhz => {
+  // Split the 32-bit scale so intermediate integers stay below 2^53.
+  const numerator = mhz * 16777216, denominator = SAMPLE_RATE * 1000;
+  return trunc(numerator / denominator) * 256 + trunc((numerator % denominator) * 256 / denominator);
+};
 const triangle = phase => {
   const p = phase >>> 20;
   return p < 2048 ? p * 2 - 2048 : 6143 - p * 2;
@@ -186,10 +189,6 @@ export async function verifyReceipt(receipt) {
     throw new Error('Receipt fields differ from the v1 schema.');
   const mismatches = Object.keys(expected).filter(k => receipt[k] !== expected[k]);
   return { verified: mismatches.length === 0, mismatches };
-}
-
-export function scoreLabel(event) {
-  return event.lane >= 3 ? NAMES[event.note] + (event.lane === 4 ? '4' : '2') : '×';
 }
 
 // Caller supplies a browser-random bit. The seed is deliberately not the ABX answer key.
