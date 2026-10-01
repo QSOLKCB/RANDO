@@ -33,3 +33,11 @@ Surprise Me. :-P.
 The first interpretation of this open-ended prompt is a small [static idea machine](index.html). It collides themes from the QSOL-IMC research constellation, proposes a test, and asks how that test could fail. A fixed seed replays the same card; a JSON receipt preserves the proposal without pretending that an experiment has been run. The [experiment record](EXPERIMENT.md) explains the choice, method, and limits.
 
 Open `index.html` on GitHub Pages or a local static server. There are no dependencies or outbound requests. Run `node --test` to check the deterministic selection logic. The original invitation above remains intact as the starting condition.
+
+## Experiment 002: Receipt Rave
+
+The second interpretation is a [deterministic industrial micro-tracker](experiment-002/): five procedural voices, A minor at 432 Hz, a sample-delay ABX listening game, and SHA-256 receipts for the score and audio. The model inferred an instrument from the recurring themes of music, tracker timing, CPU execution, and evidence. The narrator now has to listen before delivering the deep dive.
+
+[Play Receipt Rave](https://qsolkcb.github.io/RANDO/experiment-002/) · [Experiment record](experiment-002/EXPERIMENT.md) · [Release notes](experiment-002/RELEASE_NOTES.md)
+
+Serve the repository with `python3 -m http.server 8000`, then open `http://localhost:8000/experiment-002/`. Run both experiments' tests with `node --test` (Node 22+). There is no package install or build step. Experiment 001 and its record remain available above.
